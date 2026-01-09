@@ -1,8 +1,12 @@
-## Taxi Demand Predictor Service 🚕
+# Uber Demand Predictor Service 🚕
 
-- This repo is aimed at making it **easy to start playing and learning** about **MLOps**. 
+This project demonstrates an end-to-end **MLOps-enabled demand forecasting system** inspired by real-world ride-sharing use cases.
 
-- My interest in creating this project was ignited after reading UBER's blog post on [Demand and ETR Forecasting at Airports](https://www.uber.com/en-GB/blog/demand-and-etr-forecasting-at-airports/)
+My interest in creating this project was ignited after reading Uber’s engineering blog post:  
+[Demand and ETR Forecasting at Airports](https://www.uber.com/en-GB/blog/demand-and-etr-forecasting-at-airports/)
+
+> **Note:** This project is inspired by publicly available Uber engineering blogs and does not represent official Uber software.
+
 
 ## Table of Contents 📑
   * [Quick Setup](#quick-setup)
