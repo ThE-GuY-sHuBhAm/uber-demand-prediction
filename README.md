@@ -2,7 +2,7 @@
 
 - This repo is aimed at making it **easy to start playing and learning** about **MLOps**. 
 
-- My interest in creating this project was ignited after reading UBER's blog post on (:link: [Demand and ETR Forecasting at Airports](https://www.uber.com/en-GB/blog/demand-and-etr-forecasting-at-airports/))
+- My interest in creating this project was ignited after reading UBER's blog post on [Demand and ETR Forecasting at Airports](https://www.uber.com/en-GB/blog/demand-and-etr-forecasting-at-airports/)
 
 ## Table of Contents 📑
   * [Quick Setup](#quick-setup)
