@@ -60,12 +60,6 @@ My interest in creating this project was ignited after reading Uber’s engineer
     $ make predictions
     ```
 
-## Wanna see it in action?
-
-- [Live Dashboard with model predictions](https://taxi-demand-predictor.streamlit.app/)
-- [Live Dashboard with model monitoring ](https://taxi-demand-predictor-monitoring.streamlit.app/)
-
-
 ## Problem Statement
 
 - You work as a data scientist 👨‍🔬👩‍🔬 in a ride-sharing app company 🚗 (e.g. Uber)
