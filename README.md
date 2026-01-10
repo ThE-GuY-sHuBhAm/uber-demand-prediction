@@ -11,10 +11,9 @@ My interest in creating this project was ignited after reading Uber’s engineer
 ## Table of Contents 📑
   * [Quick Setup](#quick-setup)
   * [Problem Statement](#problem-statement)
-  * [Data Processing](#data-processing)
+  * [Data Processing](#data-preparation)
   * [Model Training](#model-training)
   * [MLOps](#mlops)
-  * [Live Demo](#live-demo)
 
 
 ## Quick Setup
