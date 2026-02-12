@@ -2,14 +2,13 @@ import mlflow
 import dagshub
 import json
 import pandas as pd
+import numpy as np
 import joblib
 from pathlib import Path
 import logging
 from sklearn import set_config
 from sklearn.metrics import mean_absolute_percentage_error
 
-
-import dagshub
 dagshub.init(repo_owner='ThE-GuY-sHuBhAm', repo_name='uber-demand-prediction', mlflow=True)
 
 # set the mlflow tracking uri
@@ -81,9 +80,12 @@ if __name__ == "__main__":
     model_path = root_path / "models/model.joblib"
     model = load_model(model_path)
     logger.info("Model loaded successfully")
+
+    y_pred_log = model.predict(X_test_encoded)
     
     # make predictions
-    y_pred = model.predict(X_test_encoded)
+    #y_pred = model.predict(X_test_encoded)
+    y_pred = np.expm1(y_pred_log)
     
     # calculate the loss
     loss = mean_absolute_percentage_error(y_test, y_pred)

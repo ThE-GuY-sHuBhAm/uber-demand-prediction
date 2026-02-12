@@ -5,7 +5,7 @@ import logging
 from pathlib import Path
 from mlflow.client import MlflowClient
 
-import dagshub
+
 dagshub.init(repo_owner='ThE-GuY-sHuBhAm', repo_name='uber-demand-prediction', mlflow=True)
 
 # set the mlflow tracking uri

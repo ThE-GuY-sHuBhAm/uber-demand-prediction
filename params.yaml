@@ -4,4 +4,4 @@ extract_features:
     n_init: 10
     random_state: 42
   ewma:
-    alpha: 0.4
+    alpha: 0.5

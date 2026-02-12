@@ -1,12 +1,15 @@
 import pandas as pd
+import numpy as np
 import joblib
 import logging
 from pathlib import Path
-from sklearn.linear_model import LinearRegression
 from sklearn import set_config
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
+# Import the new models
+from xgboost import XGBRegressor
+from lightgbm import LGBMRegressor
 
 set_config(transform_output="pandas")
 
@@ -25,7 +28,6 @@ handler.setFormatter(formatter)
 
 def save_model(model, save_path):
     joblib.dump(model, save_path)
-    
     
 if __name__ == "__main__":
     # current path
@@ -46,12 +48,16 @@ if __name__ == "__main__":
     X_train = df.drop(columns=["total_pickups"])
     y_train = df["total_pickups"]
     
-    # make the transformer
+    # We train on log(demand + 1) instead of raw demand
+    logger.info("Applying Log-Transformation to Target...")
+    y_train = np.log1p(y_train)
+
     encoder = ColumnTransformer([
-        ("ohe", OneHotEncoder(drop="first",sparse_output=False), ["region","day_of_week"])
-        ], remainder="passthrough", n_jobs=-1,force_int_remainder_cols=False)
+        ("ohe", OneHotEncoder(drop="first", sparse_output=False, handle_unknown="ignore"), ["region", "day_of_week"])
+        ], remainder="passthrough", n_jobs=-1, force_int_remainder_cols=False)
         
     # encode the training data
+    logger.info("Encoding data...")
     X_train_encoded = encoder.fit_transform(X_train)
     logger.info("Data encoded successfully")
     
@@ -59,15 +65,40 @@ if __name__ == "__main__":
     encoder_save_path = root_path / "models/encoder.joblib"
     joblib.dump(encoder, encoder_save_path)
     logger.info("Encoder saved successfully")
+
     
-    # train the model
-    lr = LinearRegression()
+    
+    #MODEL SELECTION
+    
+    # # OPTION 1: XGBoost
+    # logger.info("Initializing XGBoost Regressor...")
+    # model = XGBRegressor(
+    #     objective='reg:squarederror',
+    #     n_estimators=100, 
+    #     learning_rate=0.1, 
+    #     max_depth=6,
+    #     n_jobs=-1,
+    #     random_state=42
+    # )
+
+    # OPTION 2: LightGBM (Alternative)
+    # To use this, comment out the XGBoost lines above and uncomment below:
+    logger.info("Initializing LightGBM Regressor...")
+    model = LGBMRegressor(
+        objective='regression',
+        n_estimators=100,
+        learning_rate=0.1,
+        num_leaves=31,
+        n_jobs=-1,
+        random_state=42
+    )
 
     # fit on the training data
-    lr.fit(X_train_encoded, y_train)
+    logger.info("Starting model training...")
+    model.fit(X_train_encoded, y_train)
     logger.info("Model trained successfully")
     
     # save the model
     model_save_path = root_path / "models/model.joblib"
-    save_model(lr, model_save_path)
+    save_model(model, model_save_path)
     logger.info("Model saved successfully")

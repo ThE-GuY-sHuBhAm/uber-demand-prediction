@@ -71,7 +71,7 @@ def process_data(data_path, scaler, kmeans_model, ewma_params):
     resampled_data = resampled_data.reset_index(level=0)
     
     # Epsilon replacement
-    epsilon_val = 10
+    epsilon_val = 1
     resampled_data.replace({'total_pickups': {0 : epsilon_val}}, inplace=True)
     
     # EWMA Smoothing
