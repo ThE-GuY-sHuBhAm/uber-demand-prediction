@@ -5,15 +5,19 @@
 ![MLflow](https://img.shields.io/badge/MLflow-Experiment%20Tracking-0194E2)
 ![LightGBM](https://img.shields.io/badge/Model-LightGBM-success)
 
-## 📌 Project Overview
+## Project Overview
 
 This project is a complete **End-to-End MLOps Pipeline** for predicting Uber/Taxi demand in New York City. It forecasts the number of pickups in specific regions of the city for the next 15-minute interval.
 
 Unlike standard "notebook" projects, this is built as a production-grade system with **Data Versioning (DVC)**, **Experiment Tracking (MLflow)**, and **Scalable Data Processing (Dask)**.
 
+## Dataset Information
+The project utilizes the NYC Yellow Taxi Trip Data.
+- Source: http://kaggle.com/datasets/elemento/nyc-yellow-taxi-trip-data
+
 ---
 
-## 📉 The Challenge: Supply vs. Demand
+## The Challenge: Supply vs. Demand
 
 The core objective of this project is to minimize the mismatch between the number of drivers available (Supply) and passengers looking for a ride (Demand).
 
@@ -37,26 +41,13 @@ When we overlay these trends, the business problem becomes clear:
 
 ---
 
-## 🎯 Key Results
+## Key Results
 
 - **Final Model:** LightGBM Regressor (Log-Transformed Target)
 - **Performance:** **MAPE: 25.8%** (Beat baseline by ~5%)
 - **Architecture:** 5-Stage DVC Pipeline (Ingest → Split → Feature Eng → Train → Evaluate)
 
 ---
-
-## 🏗️ Architecture
-
-The pipeline is orchestrated using **DVC** to ensure reproducibility.
-
-```mermaid
-graph LR
-    A[Data Ingestion (Dask)] --> B[Time-Based Split]
-    B --> C[Spatial Clustering (K-Means)]
-    C --> D[Feature Engineering (Lags + Rolling)]
-    D --> E[Model Training (LightGBM)]
-    E --> F[Evaluation (MLflow)]
-```
 
 ### 1. Data Ingestion & Splitting
 
@@ -87,7 +78,7 @@ graph LR
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone the Repository
 
@@ -121,7 +112,7 @@ dvc repro
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 ├── .dvc/                  # DVC configuration
@@ -148,14 +139,14 @@ dvc repro
 
 ---
 
-## 🧪 Experiments & Learnings
+## Experiments & Learnings
 
 | Experiment | Model | Key Change | MAPE Score | Status |
 |------------|-------|------------|------------|--------|
-| **Exp 1** | Linear Regression | Baseline | 0.323 | ❌ Underfitting |
-| **Exp 2** | XGBoost | Non-Linearity Added | 0.308 | ⚠️ Better |
-| **Exp 3** | LightGBM (Optuna) | Hyperparameter Tuning | 0.298 | ⚠️ Overfitting |
-| **Exp 4** | **LightGBM (Log-Transform)** | **Log(Target + 1)** | **0.258** | ✅ **Champion** |
+| **Exp 1** | Linear Regression | Baseline | 0.323 | Underfitting |
+| **Exp 2** | XGBoost | Non-Linearity Added | 0.308 | Better |
+| **Exp 3** | LightGBM (Optuna) | Hyperparameter Tuning | 0.298 |  Overfitting |
+| **Exp 4** | **LightGBM (Log-Transform)** | **Log(Target + 1)** | **0.258** |  **Best** |
 
 ### Critical Fix: Data Leakage
 
@@ -163,7 +154,7 @@ Early versions of the model had an artificially low MAPE (~8%) because K-Means c
 
 ---
 
-## 📊 Model Performance
+## Model Performance
 
 The final LightGBM model with log transformation achieved:
 - **MAPE:** 25.8%
@@ -172,7 +163,7 @@ The final LightGBM model with log transformation achieved:
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Data Processing:** Dask, Pandas, NumPy
 - **Machine Learning:** LightGBM, XGBoost, Scikit-Learn
@@ -182,21 +173,13 @@ The final LightGBM model with log transformation achieved:
 
 ---
 
-## 📝 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
----
-
-## 👤 Author
-
-**Shubham**
-- GitHub: [@ThE-GuY-sHuBhAm](https://github.com/ThE-GuY-sHuBhAm)
 
 ---
 
-## 🙏 Acknowledgments
-
-- NYC Taxi & Limousine Commission for providing the dataset
+## Acknowledgments
 - DagsHub for MLflow hosting
 - The open-source community for amazing tools like DVC, MLflow, and LightGBM
