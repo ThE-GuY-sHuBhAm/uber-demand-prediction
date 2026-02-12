@@ -51,17 +51,14 @@ if __name__ == "__main__":
         ("ohe", OneHotEncoder(drop="first",sparse_output=False), ["region","day_of_week"])
         ], remainder="passthrough", n_jobs=-1,force_int_remainder_cols=False)
         
-    # fit the transformer
-    encoder.fit(X_train)
+    # encode the training data
+    X_train_encoded = encoder.fit_transform(X_train)
+    logger.info("Data encoded successfully")
     
     # save the transformer
     encoder_save_path = root_path / "models/encoder.joblib"
     joblib.dump(encoder, encoder_save_path)
     logger.info("Encoder saved successfully")
-    
-    # encode the training data
-    X_train_encoded = encoder.fit_transform(X_train)
-    logger.info("Data encoded successfully")
     
     # train the model
     lr = LinearRegression()
