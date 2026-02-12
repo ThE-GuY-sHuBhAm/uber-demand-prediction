@@ -21,7 +21,7 @@ The core objective of this project is to minimize the mismatch between the numbe
 
 We analyze historical data to track driver availability and user requests hour-by-hour. As seen below, both follow distinct temporal patterns.
 
-![Supply vs Demand Patterns](references\images\supply_demand_1.PNG)
+![Supply vs Demand Patterns](references/images/supply_demand_1.PNG)
 *Figure 1: Hourly trends for Drivers vs. Users around Central Park.*
 
 ### 2. Identifying the Mismatch
@@ -30,7 +30,7 @@ When we overlay these trends, the business problem becomes clear:
 - **Excess of Drivers:** Leads to wasted time and lower driver earnings.
 - **Lack of Drivers:** Leads to surge pricing, longer wait times, and lost customers.
 
-![Supply Demand Mismatch](references\images\supply_demand_2.PNG)
+![Supply Demand Mismatch](references/images/supply_demand_2.PNG)
 *Figure 2: Visualizing the gap where demand exceeds supply (opportunity for prediction) vs. supply exceeds demand.*
 
 **Our Goal:** Accurately predict these demand spikes so drivers can be repositioned *before* the shortage happens.
