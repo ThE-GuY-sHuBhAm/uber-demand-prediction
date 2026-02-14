@@ -1,4 +1,4 @@
-# 🚖 NYC Uber Demand Prediction (End-to-End MLOps Pipeline)
+# 🚖 Spatiotemporal Urban Mobility Demand Forecasting (End-to-End MLOps Pipeline)
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![DVC](https://img.shields.io/badge/DVC-Data%20Version%20Control-9cf)
