@@ -14,11 +14,11 @@ This project is a **production-style spatiotemporal forecasting system** that pr
 
 Unlike notebook-only ML projects, this system is built as a full **MLOps pipeline** with:
 
-✅ DVC for reproducible pipelines  
-✅ MLflow for experiment tracking & model registry  
-✅ Scalable preprocessing using Dask  
-✅ Causal time-series forecasting (leakage-free)  
-✅ Real-time driver recommendation app (Streamlit)
+- DVC for reproducible pipelines  
+- MLflow for experiment tracking & model registry  
+- Scalable preprocessing using Dask  
+- Causal time-series forecasting (leakage-free)  
+- Real-time driver recommendation app (Streamlit)
 
 ---
 
@@ -27,16 +27,16 @@ Unlike notebook-only ML projects, this system is built as a full **MLOps pipelin
 Urban ride-hailing platforms constantly suffer from **supply-demand imbalance**:
 
 - Too many drivers → idle time & lost income  
-- Too few drivers → surge pricing & poor user experience 
+- Too few drivers → surge pricing & poor user experience  
 
-### 1. Understanding the Raw Patterns
+### Understanding the Raw Patterns
 
 We analyze historical data to track driver availability and user requests hour-by-hour. As seen below, both follow distinct temporal patterns.
 
 ![Supply vs Demand Patterns](references/images/supply_demand_1.PNG)
 *Figure 1: Hourly trends for Drivers vs. Users around Central Park.*
 
-### 2. Identifying the Mismatch
+### Identifying the Mismatch
 
 When we overlay these trends, the business problem becomes clear:
 - **Excess of Drivers:** Leads to wasted time and lower driver earnings.
@@ -46,7 +46,6 @@ When we overlay these trends, the business problem becomes clear:
 *Figure 2: Visualizing the gap where demand exceeds supply (opportunity for prediction) vs. supply exceeds demand.*
 
 **Our Goal:** Predict **regional demand for the next 15-minute interval** and guide drivers toward high-probability pickup zones.
-
 
 ---
 
@@ -207,3 +206,7 @@ app.py
 ✔ MLOps pipelines turn ML into reproducible systems  
 
 ---
+
+## 📜 License
+
+MIT License
