@@ -64,8 +64,8 @@ if __name__ == "__main__":
     df.set_index("tpep_pickup_datetime", inplace=True)
     
     # make X_test and y_test
-    X_test = df.drop(columns=["total_pickups"])
-    y_test = df["total_pickups"]
+    X_test = df.drop(columns=["target"])
+    y_test = df["target"]
     
     # load the encoder
     encoder_path = root_path / "models/encoder.joblib"
@@ -100,9 +100,9 @@ if __name__ == "__main__":
         mlflow.log_metric("MAPE", loss)
         
         # converts the datasets into mlfow datasets
-        training_data = mlflow.data.from_pandas(pd.read_csv(train_data_path, parse_dates=["tpep_pickup_datetime"]).set_index("tpep_pickup_datetime"), targets="total_pickups")
+        training_data = mlflow.data.from_pandas(pd.read_csv(train_data_path, parse_dates=["tpep_pickup_datetime"]).set_index("tpep_pickup_datetime"), targets="target")
         
-        validation_data = mlflow.data.from_pandas(pd.read_csv(test_data_path, parse_dates=["tpep_pickup_datetime"]).set_index("tpep_pickup_datetime"), targets="total_pickups")
+        validation_data = mlflow.data.from_pandas(pd.read_csv(test_data_path, parse_dates=["tpep_pickup_datetime"]).set_index("tpep_pickup_datetime"), targets="target")
         
         # log the datasets
         mlflow.log_input(training_data, "training")

@@ -6,9 +6,6 @@ from pathlib import Path
 from sklearn import set_config
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
-
-# Import the new models
-from xgboost import XGBRegressor
 from lightgbm import LGBMRegressor
 
 set_config(transform_output="pandas")
@@ -45,8 +42,9 @@ if __name__ == "__main__":
     df.set_index("tpep_pickup_datetime", inplace=True)
     
     # make X_train and y_train
-    X_train = df.drop(columns=["total_pickups"])
-    y_train = df["total_pickups"]
+    X_train = df.drop(columns=["target"])
+    y_train = df["target"]
+    logger.info(df.columns)
     
     # We train on log(demand + 1) instead of raw demand
     logger.info("Applying Log-Transformation to Target...")
@@ -66,23 +64,7 @@ if __name__ == "__main__":
     joblib.dump(encoder, encoder_save_path)
     logger.info("Encoder saved successfully")
 
-    
-    
-    #MODEL SELECTION
-    
-    # # OPTION 1: XGBoost
-    # logger.info("Initializing XGBoost Regressor...")
-    # model = XGBRegressor(
-    #     objective='reg:squarederror',
-    #     n_estimators=100, 
-    #     learning_rate=0.1, 
-    #     max_depth=6,
-    #     n_jobs=-1,
-    #     random_state=42
-    # )
 
-    # OPTION 2: LightGBM (Alternative)
-    # To use this, comment out the XGBoost lines above and uncomment below:
     logger.info("Initializing LightGBM Regressor...")
     model = LGBMRegressor(
         objective='regression',
