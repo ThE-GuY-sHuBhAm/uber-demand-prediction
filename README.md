@@ -204,9 +204,3 @@ app.py
 ✔ Causal feature design improves real-world reliability  
 ✔ Spatial clustering enables scalable urban modeling  
 ✔ MLOps pipelines turn ML into reproducible systems  
-
----
-
-## 📜 License
-
-MIT License
