@@ -42,19 +42,19 @@ stages:
       - ./data/processed/train.csv
       - ./data/processed/test.csv
 
-  train:
-    cmd: python ./src/models/train.py
+  model_training:
+    cmd: python ./src/models/model_training.py
     deps:
-      - ./src/models/train.py
+      - ./src/models/model_training.py
       - ./data/processed/train.csv
     outs:
       - ./models/encoder.joblib
       - ./models/model.joblib
 
-  evaluate:
-    cmd: python ./src/models/evaluate.py
+  model_evaluation:
+    cmd: python ./src/models/model_evaluation.py
     deps:
-      - ./src/models/evaluate.py
+      - ./src/models/model_evaluation.py
       - ./models/encoder.joblib
       - ./models/model.joblib
       - ./data/processed/test.csv
