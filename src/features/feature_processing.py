@@ -56,6 +56,8 @@ if __name__ == "__main__":
         "region"
     ]
 
+    df = df.sort_index()
+
     # ---- TEMPORAL SPLIT (ONCE, CLEAN) ----
     train = df[df["month"].isin([1, 2])]
     test = df[df["month"] == 3]

@@ -55,7 +55,8 @@ if __name__ == "__main__":
     # ---- APPLY CLUSTERING TO FULL DATA ----
 
     df = pd.read_csv(raw_full_path, parse_dates=["tpep_pickup_datetime"])
-
+    df = df.sort_values("tpep_pickup_datetime")
+    
     coords = df[["pickup_longitude", "pickup_latitude"]]
     df["region"] = kmeans.predict(scaler.transform(coords))
 

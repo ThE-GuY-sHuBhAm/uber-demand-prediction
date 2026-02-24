@@ -92,7 +92,7 @@ if __name__ == "__main__":
     df_final = dask_pipeline(df_final)
     logger.info("Dask pipeline is executed successfully")
     
-    # save the dataframe
+    # save dataframe
     df_without_outliers_path = root_path / "data/interim/df_without_outliers.csv"
     df_final.to_csv(df_without_outliers_path, index=False)
     logger.info("DataFrame is saved successfully")
